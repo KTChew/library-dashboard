@@ -1,16 +1,90 @@
-# React + Vite
+# 📚 Library Dashboard (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based Library Dashboard application that demonstrates modern frontend development practices including component-based architecture, state management, and client-side routing.
 
-Currently, two official plugins are available:
+This project was built as a portfolio piece to showcase practical React skills used in real-world business applications such as internal dashboards and management systems.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📖 Display a list of books in a structured dashboard table
+- ➕ Add new books dynamically
+- ❌ Delete books from the system
+- 🔁 Toggle book status (Available / Borrowed)
+- 🔍 Real-time search filtering by book title
+- 🏷️ Status-based filtering (All / Available / Borrowed)
+- 🧭 Multi-page navigation using React Router (Home / Books / About)
+- 🧩 Modular component design for maintainability and reuse
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- React (Vite)
+- React Router DOM
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Node.js / npm
+
+---
+
+## 🧠 Core Concepts Demonstrated
+
+This project demonstrates practical understanding of:
+
+- React functional components
+- Hooks (`useState`, `useEffect`)
+- Controlled inputs and form handling
+- State lifting and prop drilling
+- Conditional rendering
+- Array operations (`map`, `filter`)
+- Component composition
+- Client-side routing (SPA architecture)
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── components/
+│   ├── BookForm.jsx
+│   ├── BookTable.jsx
+│   ├── BookFilters.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── About.jsx
+│
+├── App.jsx
+├── main.jsx
+```
+
+---
+
+## ▶️ Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/KTChew/library-dashboard.git
+cd library-dashboard
+```
+
+
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Start development server
+```bash
+npm run dev
+```
+
+### 4. Open in browser
+```bash
+http://localhost:5173
+```
