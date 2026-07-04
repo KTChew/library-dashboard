@@ -88,3 +88,24 @@ npm run dev
 ```bash
 http://localhost:5173
 ```
+
+## 📸 Screenshots
+
+### Home Page
+![Home](./public/screenshots/home.png)
+
+### Books Dashboard
+![Books](./public/screenshots/books.png)
+
+### Search Functionality
+![Search](./public/screenshots/search_book.png)
+
+### Filtering System
+![Filter](./public/screenshots/filter_click_button_available_book.png)
+
+### Add / Delete Actions
+![CRUD](./public/screenshots/add_book_before.png)
+![CRUD](./public/screenshots/add_book_after.png)
+![CRUD](./public/screenshots/delete_book_after.png)
+![CRUD](./public/screenshots/toggle_status_after.png)
+
