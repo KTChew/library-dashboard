@@ -72,7 +72,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/books" element={
             <div>
-              <h2>Library Dashboard</h2>
 
               {/* Main Content */}
               <div className="container">
