@@ -6,15 +6,13 @@ import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import { initialBooks } from "./data/books";
+import useBooks from "./hooks/useBooks";
 
 
 function App() {
 
-  const [books, setBooks] = useState([
-    { id: 1, title: "Clean Code", author: "Robert C. Martin", status: "Available" },
-    { id: 2, title: "Domain-Driven Design", author: "Eric Evans", status: "Borrowed" },
-    { id: 3, title: "The Pragmatic Programmer", author: "Andy Hunt", status: "Available" }
-  ]);
+  const { books, setBooks } = useBooks();
 
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,10 +70,13 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/books" element={
             <div>
+              <h2>Library Dashboard</h2>
 
               {/* Main Content */}
               <div className="container">
-                <h1>📚 Library Dashboard</h1>
+                <h1 className="page-title">
+                    📚 Library Dashboard
+                </h1>
 
                 <BookFilters filter={filter} setFilter={setFilter} />
 

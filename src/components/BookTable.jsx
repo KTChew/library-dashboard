@@ -38,9 +38,11 @@ export default function BookTable({ books, onDelete, onToggle }) {
         ) : (
           books.map((book) => (
             <tr key={book.id}>
-              <td style={tdStyle}>{book.title}</td>
-              <td style={tdStyle}>{book.author}</td>
-              <td style={tdStyle}>
+              <td style={tdStyle} className="table-cell">{book.title}</td>
+              <td style={tdStyle} className="table-cell">
+                {book.author}
+              </td>
+              <td style={tdStyle} className="table-cell">
                 <span
                   style={{
                     padding: "4px 8px",
@@ -53,7 +55,7 @@ export default function BookTable({ books, onDelete, onToggle }) {
                   {book.status}
                 </span>
               </td>
-              <td style={tdStyle}>
+              <td style={tdStyle} className="table-cell">
                 <button
                   onClick={() => onDelete(book.id)}
                   style={{ marginLeft: "10px" }}
@@ -62,7 +64,7 @@ export default function BookTable({ books, onDelete, onToggle }) {
                 </button>
               </td>
 
-              <td style={tdStyle}>
+              <td style={tdStyle} className="table-cell">
                 <button
                   onClick={() => onToggle(book.id)}   
                 >

@@ -207,3 +207,66 @@ body {
   margin-right: 10px;
   padding: 8px;
 }
+
+.dashboard {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.page-title{
+    margin-top:0;
+    color:#2c3e50;
+}
+
+button{
+
+    padding:8px 14px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    margin-right:8px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+input{
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+    margin-right:10px;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#f5f5f5;
+}
+
+.table-cell {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
