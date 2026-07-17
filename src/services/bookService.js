@@ -1,18 +1,12 @@
-const STORAGE_KEY = "library_books";
+const API_URL = "https://localhost:7222/api/books";
 
-export function getBooks(initialBooks) {
+export async function getBooks() {
 
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const response = await fetch(API_URL);
 
-    return stored
-        ? JSON.parse(stored)
-        : initialBooks;
-}
+    if (!response.ok) {
+        throw new Error("Failed to load books");
+    }
 
-export function saveBooks(books) {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(books)
-    );
+    return await response.json();
 }

@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
-import { initialBooks } from "../data/books";
-import { getBooks, saveBooks } from "../services/bookService";
+import { getBooks} from "../services/bookService";
 
 
 export default function useBooks() {
 
-  const [books, setBooks] = useState(() =>
-        getBooks(initialBooks)
-    );
+    const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    saveBooks(books);
-  }, [books]);
+    useEffect(() => {
+        async function loadBooks() {
+            try {
+                const data = await getBooks();
+                setBooks(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        loadBooks();
+    }, []);
 
   return {
     books,
