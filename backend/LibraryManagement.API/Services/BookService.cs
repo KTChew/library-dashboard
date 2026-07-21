@@ -1,38 +1,52 @@
-﻿using LibraryManagement.API.Models;
+﻿using LibraryManagement.API.Data;
+using LibraryManagement.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Api.Services;
 
+
 public class BookService
 {
-    private readonly List<Book> _books =
-    [
-        new Book
-        {
-            Id = 1,
-            Title = "Clean Code",
-            Author = "Robert C. Martin",
-            Status = "Available"
-        },
+    private readonly LibraryDbContext _context;
 
-        new Book
-        {
-            Id = 2,
-            Title = "Domain-Driven Design",
-            Author = "Eric Evans",
-            Status = "Borrowed"
-        },
-
-        new Book
-        {
-            Id = 3,
-            Title = "The Pragmatic Programmer",
-            Author = "Andy Hunt",
-            Status = "Available"
-        }
-    ];
+    public BookService(LibraryDbContext context)
+    {
+        _context = context;
+    }
 
     public List<Book> GetAll()
     {
-        return _books;
+        return _context.Books.ToList();
     }
+
+    public Book? GetById(int id)
+    {
+        return _context.Books
+            .FirstOrDefault(x => x.Id == id);
+    }
+   
+    public void Add(Book book)
+    {
+        _context.Books.Add(book);
+        _context.SaveChanges();
+    }
+
+    public void Update(Book book)
+    {
+        _context.Books.Update(book);
+        _context.SaveChanges();
+    }
+
+    public void Delete(int id)
+    {
+        var book = _context.Books
+            .FirstOrDefault(x => x.Id == id);
+
+        if (book != null)
+        {
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+        }
+    }
+
 }

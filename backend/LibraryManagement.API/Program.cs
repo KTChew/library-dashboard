@@ -1,6 +1,13 @@
 using LibraryManagement.Api.Services;
+using LibraryManagement.API.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<LibraryDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
 // Add services to the container.
 
@@ -21,7 +28,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<BookService>();
+builder.Services.AddScoped<BookService>();
 
 var app = builder.Build();
 
