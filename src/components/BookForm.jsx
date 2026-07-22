@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { addBook, updateBook } from "../services/bookService";
 
-export default function BookForm({ books, setBooks }) {
+export default function BookForm({ books, setBooks, editBook, setEditBook }) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+
+  useEffect(() => {
+
+      if(editBook)
+      {
+          setTitle(editBook.title);
+          setAuthor(editBook.author);
+      }
+
+  }, [editBook]);
+
 
   return (
     <div style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -27,24 +39,58 @@ export default function BookForm({ books, setBooks }) {
       />
 
       <button
-        onClick={() => {
-          if (!title || !author) return;
+       onClick={async () => {
 
-          setBooks([
+    if (!title || !author) return;
+
+
+    if (editBook) {
+
+        const updatedBook = await updateBook({
+            id: editBook.id,
+            title,
+            author,
+            status: editBook.status
+        });
+
+
+        setBooks(
+            books.map((book) =>
+                book.id === updatedBook.id
+                    ? updatedBook
+                    : book
+            )
+        );
+
+
+        setEditBook(null);
+
+    } 
+    else {
+
+        const newBook = {
+            title,
+            author,
+            status: "Available"
+        };
+
+
+        const savedBook = await addBook(newBook);
+
+
+        setBooks([
             ...books,
-            {
-              id: books.length + 1,
-              title,
-              author,
-              status: "Available"
-            }
-          ]);
+            savedBook
+        ]);
+    }
 
-          setTitle("");
-          setAuthor("");
-        }}
+
+    setTitle("");
+    setAuthor("");
+
+}}
       >
-        Add Book
+        {editBook ? "Update Book" : "Add Book"}
       </button>
     </div>
   );

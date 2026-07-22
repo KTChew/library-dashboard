@@ -1,4 +1,4 @@
-export default function BookTable({ books, onDelete, onToggle }) {
+export default function BookTable({ books, onDelete, onToggle, onEdit }) {
   const thStyle = {
     textAlign: "left",
     borderBottom: "2px solid #ccc",
@@ -56,6 +56,14 @@ export default function BookTable({ books, onDelete, onToggle }) {
                 </span>
               </td>
               <td style={tdStyle} className="table-cell">
+
+                <button
+                      onClick={() => onEdit(book)}
+                      style={{ marginRight: "10px" }}
+                  >
+                      Edit
+                </button>
+
                 <button
                   onClick={() => onDelete(book.id)}
                   style={{ marginLeft: "10px" }}

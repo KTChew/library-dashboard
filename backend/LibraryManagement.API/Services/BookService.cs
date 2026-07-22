@@ -31,10 +31,12 @@ public class BookService
         _context.SaveChanges();
     }
 
-    public void Update(Book book)
+    public Book Update(Book book)
     {
         _context.Books.Update(book);
         _context.SaveChanges();
+
+        return book;
     }
 
     public void Delete(int id)

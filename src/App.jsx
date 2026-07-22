@@ -8,12 +8,14 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import { initialBooks } from "./data/books";
 import useBooks from "./hooks/useBooks";
+import { updateBook } from "./services/bookService";
+import { deleteBook } from "./services/bookService";
 
 
 function App() {
 
   const { books, setBooks } = useBooks();
-
+  const [editBook, setEditBook] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -32,22 +34,49 @@ function App() {
     return matchesSearch && matchesFilter;
   });
 
-  const handleDelete = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+  const handleEdit = (book) => {
+      setEditBook(book);
   };
 
-  const toggleStatus = (id) => {
+  const handleDelete = async (id) => {
+
+    try {
+
+        await deleteBook(id);
+
+        setBooks(
+            books.filter((book) => book.id !== id)
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+};
+
+  const toggleStatus = async (id) => {
+
+    const book = books.find(b => b.id === id);
+
+    if (!book) return;
+
+    const updatedBook = {
+        ...book,
+        status:
+            book.status === "Available"
+                ? "Borrowed"
+                : "Available"
+    };
+
+    const savedBook = await updateBook(updatedBook);
+
     setBooks(
-      books.map((book) =>
-        book.id === id
-          ? {
-              ...book,
-              status: book.status === "Available" ? "Borrowed" : "Available"
-            }
-          : book
-      )
+        books.map(b =>
+            b.id === id ? savedBook : b
+        )
     );
-  };
+};
 
   useEffect(() => {
     document.title = "Library Dashboard";
@@ -91,9 +120,10 @@ function App() {
 
                 <p>Book List</p>
 
-                <BookForm books={books} setBooks={setBooks} />
+                <BookForm books={books} setBooks={setBooks} editBook={editBook}
+    setEditBook={setEditBook} />
 
-                <BookTable books={filteredBooks} onDelete={handleDelete} onToggle={toggleStatus} />
+                <BookTable books={filteredBooks} onDelete={handleDelete} onToggle={toggleStatus} onEdit={handleEdit} />
 
               </div>
             </div>

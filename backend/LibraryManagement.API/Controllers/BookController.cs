@@ -54,9 +54,9 @@ public class BooksController : ControllerBase
             return BadRequest();
         }
 
-        _bookService.Update(book);
+        var updatedBook = _bookService.Update(book);
 
-        return NoContent();
+        return Ok(updatedBook);
     }
 
     [HttpDelete("{id}")]
